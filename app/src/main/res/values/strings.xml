@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">SaudeEmDia</string>
+
+    <string name="hello_world">Hello world!</string>
+
+    <string name="welcome">Bem vindo!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="add_person">Adicionar Pessoa</string>
+
+
+    <string name="person_name">Nome</string>
+    <string name="person_address">Endereço</string>
+    <string name="person_birthday">Data de Nascimento</string>
+    <string name="person_sus">SUS</string>
+
+
+
+
+    <string name="add_person_ok">OK</string>
+    <string name="title_activity_add_person_category">Escolha a Categoria</string>
+
+    <string name="hipertension_category">Hipertensos</string>
+    <string name="diabetic_category">Diabéticos</string>
+    <string name="pregnant_category">Gestantes</string>
+    <string name="children_category">Crianças</string>
+
+
+
+    <string name="title_activity_hypertension_person">Hipertenso</string>
+    <string name="person_medication">Medication</string>
+
+
+    <string name="title_activity_diabetic_person">Diabético</string>
+
+
+    <string name="title_activity_pregnant_person">Gestante</string>
+
+
+    <string name="title_activity_child_person">Criança</string>
+
+
+</resources>
