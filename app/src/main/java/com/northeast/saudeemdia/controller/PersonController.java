@@ -1,6 +1,10 @@
 package com.northeast.saudeemdia.controller;
 
+import com.northeast.saudeemdia.model.ChildPerson;
+import com.northeast.saudeemdia.model.DiabeticPerson;
+import com.northeast.saudeemdia.model.HypertensionPerson;
 import com.northeast.saudeemdia.model.Person;
+import com.northeast.saudeemdia.model.PregnantPerson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,18 +19,36 @@ public class PersonController {
     private List<Person> persons;
 
     private PersonController () {
+
         persons = new ArrayList<>();
     }
 
-    public void addPerson(String name, String address, String birthday, String sus) {
-        Person person = new Person(name, address, birthday, sus);
+    public void addPerson(Person person) {
         persons.add(person);
     }
 
-    public void getPersons() {
+    public List<Person> getPersons() {
 
 
+        return persons;
+    }
 
+
+    public List<Person> getPersonsByCategory(String category) {
+        List<Person> filterPersons = new ArrayList<>();
+        for (Person p : persons) {
+            if(category.equals("Hipertensos") && p instanceof HypertensionPerson) {
+                filterPersons.add(p);
+            } else if(category.equals("Diabeticos") && p instanceof DiabeticPerson) {
+                filterPersons.add(p);
+            } else if(category.equals("Criancas") && p instanceof ChildPerson) {
+                filterPersons.add(p);
+            } else if(category.equals("Gestantes") && p instanceof PregnantPerson) {
+                filterPersons.add(p);
+            }
+        }
+
+        return filterPersons;
     }
 
     public static PersonController getInstance() {

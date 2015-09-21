@@ -1,17 +1,32 @@
 package com.northeast.saudeemdia;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import com.northeast.saudeemdia.controller.PersonController;
+import com.northeast.saudeemdia.model.DiabeticPerson;
+import com.northeast.saudeemdia.model.HypertensionPerson;
+import com.northeast.saudeemdia.model.Person;
 
 
 public class DiabeticPersonActivity extends ActionBarActivity {
+
+    private EditText nameEt, addressEt, birthdayEt, susEt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diabetic_person);
+
+        nameEt = (EditText) findViewById(R.id.person_name_et);
+        addressEt = (EditText) findViewById(R.id.person_address_et);
+        birthdayEt = (EditText) findViewById(R.id.person_birthday_et);
+        susEt = (EditText) findViewById(R.id.person_sus_et);
     }
 
     @Override
@@ -35,4 +50,19 @@ public class DiabeticPersonActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void addPerson(View view) {
+
+        String name = nameEt.getText().toString();
+        String address = addressEt.getText().toString();
+        String birthday = birthdayEt.getText().toString();
+        String sus = susEt.getText().toString();
+
+        Person person = new DiabeticPerson(name, address, birthday, sus);
+        PersonController.getInstance().addPerson(person);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }
+
 }

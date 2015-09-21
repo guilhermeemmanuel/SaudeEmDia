@@ -5,14 +5,55 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+
+import com.northeast.saudeemdia.adapters.PersonAdapter;
+import com.northeast.saudeemdia.controller.PersonController;
+import com.northeast.saudeemdia.model.Person;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    private ListView personsLv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Spinner dropdown = (Spinner)findViewById(R.id.category_sp);
+
+        String[] items = new String[]{"Hipertensos", "Diabeticos", "Gestantes", "Criancas"};
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
+        dropdown.setAdapter(adapter);
+
+
+        personsLv = (ListView) findViewById(R.id.persons_lv);
+        final PersonAdapter personAdapter = new PersonAdapter(MainActivity.this, PersonController.getInstance().getPersonsByCategory("Hipertensos"));
+        personsLv.setAdapter(personAdapter);
+
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String category = adapter.getItem(position);
+                personAdapter.updateItems(PersonController.getInstance().getPersonsByCategory(category));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
